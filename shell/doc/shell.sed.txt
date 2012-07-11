@@ -1,0 +1,62 @@
+1 sed 删除
+sed -e 'd' mydoc.txt    
+#删除mydoc.txt里面的所有内容，并打印到标准输出（相信没有哪个傻瓜这样做）
+sed -e '1d' mydoc.txt    
+#删除mydoc.txt的第一行，并将其余内容打印到标准输出
+sed -e '1,100d' mydoc.txt
+#删除1~100行,打印其余的行
+sed -e '/begin/,/^end/d' mydoc.txt
+#删除以begin开始，以end结尾中间的所有行
+
+2 sed 替换
+sed -e 's/neo/lei/' mydoc.txt
+#将mydoc.txt 每行第一个neo替换成lei，如果将's/neo/lei/g' 那么替换每行出现的所有neo,这个方式很想vim里面的替换
+sed -e '1,100s/neo/lei/g'
+#将1~100行里面所有的neo替换为lei
+sed -e '/^begin/,/^end/s/neo/lei/g' mydoc.txt
+#将在begin和end内的所有neo替换为lei
+sed -e 's:neo:lei:g'
+#sed可以使用":"来代替"/",这个是最实惠的，免得写负载难读的转义字符
+sed -e '1,100{s/neo/lei/g s/foo/bar/g}'
+#将1~100行内所有的neo替换为lei,所有的foo替换为bar
+sed -e '/^begin/,/^end/{s/neo/lei/g}'
+#原理同上，将begin和end之间的neo替换为lei
+
+3 sed 打印
+延续上面的例子，将d换成p，并且前面加上-n 操作符，就是打印匹配的行，而非删除；不知道能不能理解为删除的反模式^_^!
+sed -n -e 'p' mydoc.txt
+sed -n -e '1p' mydoc.txt
+sed -n -e '1,100p' mydoc.txt  
+sed -n -e '/begin/,/^end/p' mydoc.txt
+
+4 sed 行号打印
+sed -e '=;p' mydoc.txt
+
+打印mydoc.txt所有行，这里“=”的含义就是打印行号，等号和‘p’的中间放了一个分号，用来执行多个命令,例如：sed -e ‘=;d’ mydoc.txt。也可以直接使用sed -e ‘=’ -e ‘d’ mydoc.txt
+
+5 sed 插入
+sed -e '1 i\neo'
+#在第一行之前插入neo
+sed -e '1 a\neo'
+#在第一行之后插入neo
+sed -e '1,100 i\neo'
+#在1~100行之前插入neo
+sed -e '1,$ i\neo'
+#在第一行到最后一行都插入neo
+
+sed 的插入模式只要记住’i'是“之前”，而’a'是“之后”
+
+6 sed 修改
+sed -e '1,3c\neo'
+
+7 sed 文件读入和文件写入
+sed -e '/neo/r file' mydoc.txt
+#将文件file里面的内容写入到匹配neo的后面
+sed -e '/neo/w file' mydoc.txt
+#mydox.txt文件内所有匹配neo的行都将写入到file里
+
+<strong>8 sed 退出</strong>
+[cc lang="bash"]sed -e '100q' mydoc.txt
+
+#读到100行的时候退出，不继续读
+

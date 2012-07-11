@@ -1,0 +1,52 @@
+1.在一个文件内搜索某个字符串
+grep 'match_word' file
+
+2.在多个文件内搜索某个字符串
+grep 'match_word' file file2
+grep 'match_word' *.rb      # 后面可以跟正则\
+
+3.不区分大小写
+grep -i 'match_word' file
+
+4.正则表达式
+grep 'regular' file  # 放一个正则表达式也是ok的
+
+5.全字匹配
+grep -w 'the' file   # 会匹配the，但是不会匹配there
+
+6.匹配前后几行(match with A/B/C)
+grep -A 3 'the' file # 匹配出现the的那行并且也输出后面的三行
+grep -B 3 'the' file # 匹配出现the的那行并且也输出前面的三行
+grep -C 3 'the' file # 匹配出现the的那行并且也输出前后三行
+
+7.搜索目录下的文件
+grep -r 'the' ./  # 搜索目录下面的文件里面报行the的文件
+grep -R 'the' ./  # 递归搜索
+
+8.反向匹配
+grep -v 'the' file # 找不不含有the的行
+
+9.反向匹配多个字符
+grep -v -e 'the' -e 'this' -e 'find' # 匹配不包含the、this、find的行
+
+10.找到匹配的数量
+grep -c 'the' file # 找出字符the的行数的数量
+
+11.显示匹配的的行号
+grep -n 'the' file # 找出file内匹配the的行，并且显示行号
+
+12.仅仅显示匹配的文件名称
+grep -l 'the' *.rb  # 所有包含字符the的文件名称
+
+13.仅仅显示匹配的字符串
+grep -o 'the' file  #  仅仅显示每行的the
+
+14.多颜色显示
+grep -v 'the' file --color
+
+或者
+export GREP_OPTIONS='--color=auto' GREP_COLOR='100;8' ;
+grep 'the' file
+
+参考:
+http://www.neocanable.com/linux-grep/

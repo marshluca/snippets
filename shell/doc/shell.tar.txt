@@ -1,0 +1,40 @@
+1.创建tar包
+tar cvf demo.tar demo/ # 打包
+tar xvf demo.tar       # 解包
+
+c : 创建归档文件
+v : 显示被打包的文件
+f : 使用文件归档
+tar czvf demo.tar.gz demo/ # 打包并且压缩
+tar xzvf demo.tar.gz       # 解压缩
+
+z : 压缩，用gzip
+note: tgz == tar.gz
+tar cjvf demo.tar.bz2 demo/ # 用gzip2压缩
+tar xjvf demo.tar.bz2       # 解压
+
+j : bzip2解压
+note: tbz和.tb2 等同于tar.bz2
+
+2.查看tar包里面的东西(listing a tar file)
+tar tvf demo.tar     # 查看一个tar文件
+tar tzvf demo.tar.gz # 查看tar.gz/tgz文件
+tar tjvf demo.tar.bz2 # 查看bz2/tb2/tbz等类型的文件
+
+3.解压单独文件或者目录
+tar xvf demo.tar ./file       # 将file从demo.tar中解压出来
+tar xzvf demo.tar.gz ./file   # 将file从demo.tar.gz中解压出来
+tar xjvf demo.tar.bz2 ./file  # 将file从demo.tar.bz2中解压出来
+
+5.解压出一种类型的文件
+tar xvf demo.tar --wildcards ‘*.rb’ # 解压demo.tar包中所有的rb文件
+
+6.将文件或者目录推到tar里面
+tar rvf demo.tar demo/     # 将demo/ 目录打包到demo.tar中
+tar rvf demo.tar demo.file # 将demo.file打包到demo.tar中
+
+other tips
+tar cjvf back-$(date +%Y%m%d).tar.bz2 to_backup/ # 按照日期备份
+
+参考:
+http://www.neocanable.com/linux-tar/

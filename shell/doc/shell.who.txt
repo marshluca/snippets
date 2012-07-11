@@ -1,0 +1,26 @@
+1.查看用户行为
+$ w
+12:29:52 up  3:38,  7 users,  load average: 1.59, 1.70, 1.50
+USER     TTY      FROM              LOGIN@   IDLE   JCPU   PCPU WHAT
+neo      tty7     :0               08:51    3:38m 27:36   0.22s gnome-session
+neo      pts/0    :0.0             08:51   28:43   0.45s  0.28s ssh meng@192.168.254.50
+neo      pts/1    :0.0             08:51   26:34   0.39s  0.23s ssh meng@192.168.254.50
+neo      pts/2    :0.0             08:51   15:10   0.28s  0.10s ssh meng@192.168.254.50
+neo      pts/3    :0.0             08:51    5:03   0.29s  0.11s ssh meng@192.168.254.50
+neo      pts/4    :0.0             12:28    1:01   0.20s  0.20s bash
+neo      pts/5    :0.0             10:56    0.00s  0.52s  0.00s w
+
+2.都有谁在使用系统
+$ who
+meng     pts/0        2010-11-24 09:19 (192.168.254.107)
+meng     pts/1        2010-11-24 08:51 (192.168.254.107)
+meng     pts/2        2010-11-24 08:51 (192.168.254.107)
+meng     pts/3        2010-11-24 08:51 (192.168.254.107)
+gengh    pts/4        2010-11-24 09:09 (192.168.254.114)
+meng     pts/5        2010-11-24 11:57 (192.168.254.114)
+
+3.将用户踢出
+$pkill -kill -t pts/1
+
+参考:
+http://www.neocanable.com/category/linux/page/2/

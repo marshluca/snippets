@@ -1,0 +1,47 @@
+1.找到某个名字的文件
+find -name 'demo.rb' # 找到名字是demo.rb的文件(当前目录下递归查找)
+find -name '*.svn'   # 后面也能跟正则表达式
+
+2.大小写不敏感
+find -iname 'demo.rb' # 不区分大小写的找demo.rb这个文件名字,DEmo.rb也匹配
+
+3.指定最大/小递归的目录层数
+# 在当前目录下面递归查找demo.rb，但是最深到第2层目录
+find --maxdepth 2 -name 'demo.rb'
+
+# 最大递归目录层数3，最小2
+find --mindepth 2 --maxdepth 3 -name 'demo.rb'
+
+4.查找不匹配的，反向查找
+find -not -name 'demo.rb' # 找到不是demo.rb的文件
+
+5.用find的执行结果执行下个命令
+
+# cat 所有名字报行demo.rb的文件
+find -name 'demo.rb' --exec cat {}
+find -name 'demo.rb' | xargs cat
+
+6.查找空文件
+find ./ -empty # 找当前目录下的空文件
+
+7.根据文件类型查找
+find . -type s # 查找socket文件
+find . -type d # 查找目录
+find . -type f # 普通文件
+find . -type f -name ".*" # 隐藏文件
+find -type d -name ".*" # 隐藏目录
+
+8.根据文件大小搜索
+find ./ -size +100M # 找出大于100M的文件
+find ./ -size -100M # 找出小于100M的文件
+find ./ -size 100M  # 找出等于100M的文件
+
+9.根据修改时间查找
+find -mtime 5  # 找出5天之前修改的文件
+find -mmin 5   # 找出5分钟之前修改的文件
+
+find -atiem 5  # 5天之内修改过的文件
+find -amin  5  # 5分钟内修改过的文件
+
+参考:
+http://www.neocanable.com/category/linux/page/2/

@@ -1,0 +1,16 @@
+Ctrl + a 切换到命令行开始
+Ctrl + e 切换到命令行末尾
+Ctrl + l 清除屏幕内容
+Ctrl + u 清除剪切光标之前的内容
+Ctrl + k 剪切清除光标之后的内容
+Ctrl + y 复制剪切板里的内容
+Ctrl + h 类似于退格键
+Ctrl + r 在历史命令中查找 （这个非常好用，输入关键字就调出以前的命令了）
+Ctrl + c 终止命令
+Ctrl + d 退出shell
+Ctrl + z 转入后台运行..
+Ctrl + p 上一条命令
+Ctrl + R - Search the history backwards with multi occurrence
+Ctrl + xx - Move between EOL and current cursor position
+Ctrl + x @ - Show possible hostname completions
+Ctrl + w - 删除最后输入的单词
