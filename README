@@ -1,5 +1,0 @@
-A collection of some helpful scripts.
-
-git clone git@github.com:marshluca/sh.git ~/sh
-. ~/sh/mysql.restart.sh
-
